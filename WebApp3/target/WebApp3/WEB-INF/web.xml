@@ -1,0 +1,48 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+
+  <display-name>WebApp3</display-name>
+
+  <servlet>
+    <servlet-name>AskBusName</servlet-name>
+    <jsp-file>/AskBusName.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AskBusName</servlet-name>
+    <url-pattern>/AskBusName</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>BusList.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- Описание защищаемых ресурсов -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Список автобусов</web-resource-name>
+      <url-pattern>/BusList.jsp</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>manager</role-name>
+      <role-name>tomcat</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Write Bus List</realm-name>
+  </login-config>
+
+  <security-role>
+    <role-name>manager</role-name>
+  </security-role>
+  <security-role>
+    <role-name>tomcat</role-name>
+  </security-role>
+
+</web-app>
